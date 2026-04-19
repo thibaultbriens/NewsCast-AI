@@ -1,0 +1,9 @@
+[Unit]
+Description=Run News Podcast daily at 5:55 AM
+
+[Timer]
+OnCalendar=*-*-* 05:55:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

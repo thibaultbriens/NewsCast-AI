@@ -1,0 +1,17 @@
+[Unit]
+Description=NewsCast-AI FastAPI Server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/news-podcast
+ExecStart=/opt/news-podcast/.venv/bin/uvicorn src.api:app --host 0.0.0.0 --port 8000 --workers 1
+Environment="PYTHONPATH=/opt/news-podcast"
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/var/log/news-podcast-api.log
+StandardError=append:/var/log/news-podcast-api-error.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+[Unit]
+Description=Daily News Podcast Generator
+After=network.target ollama.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/opt/news-podcast
+ExecStart=/opt/news-podcast/.venv/bin/python3 /opt/news-podcast/main.py
+Environment="PYTHONPATH=/opt/news-podcast"
+# Secrets are loaded from a restricted file (chmod 600, owned by root)
+# Create /etc/news-podcast/secrets.env with:
+#   NEWSAPI_KEY=your_newsapi_key
+#   DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+EnvironmentFile=/etc/news-podcast/secrets.env
+StandardOutput=append:/var/log/news-podcast.log
+StandardError=append:/var/log/news-podcast-error.log
+TimeoutStartSec=1800

@@ -1,0 +1,16 @@
+rss_feeds:
+  tech:
+    - "https://www.lemonde.fr/technologies/rss_full.xml"
+    - "https://techcrunch.com/feed/"
+    - "https://www.01net.com/rss/info/flux-rss-actualite-informatique.xml"
+  geopolitique:
+    - "https://www.lemonde.fr/international/rss_full.xml"
+    - "https://feeds.bbci.co.uk/news/world/rss.xml"
+    - "https://www.rfi.fr/fr/rss"
+  sport:
+    - "https://www.lequipe.fr/rss/actu_rss.xml"
+    - "https://feeds.bbci.co.uk/sport/rss.xml"
+  all_topics:
+    - "https://www.lemonde.fr/rss/une.xml"
+    - "https://feeds.bbci.co.uk/news/rss.xml"
+    - "https://www.lefigaro.fr/rss/figaro_actualites.xml"
