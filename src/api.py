@@ -86,9 +86,11 @@ async def latest() -> RedirectResponse:
     # Look back up to 30 days for the latest podcast
     for days_ago in range(0, 30):
         # Build the date from a trusted datetime object — not from user input
-        date_dir = (OUTPUT_DIR / (datetime.now() - timedelta(days=days_ago)).strftime("%Y-%m-%d")).resolve()
-        if date_dir.is_relative_to(OUTPUT_DIR) and date_dir.is_dir() and list(date_dir.glob("*.mp3")):
-            date_str = date_dir.name
-            return RedirectResponse(url=f"/podcasts/{date_str}.mp3", status_code=307)
+        date_label = (datetime.now() - timedelta(days=days_ago)).strftime("%Y-%m-%d")
+        date_dir = (OUTPUT_DIR / date_label).resolve()
+        if not date_dir.is_relative_to(OUTPUT_DIR):
+            continue
+        if date_dir.is_dir() and list(date_dir.glob("*.mp3")):
+            return RedirectResponse(url=f"/podcasts/{date_label}.mp3", status_code=307)
 
     raise HTTPException(status_code=404, detail="No podcast available yet")

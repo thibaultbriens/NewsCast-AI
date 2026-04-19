@@ -42,11 +42,6 @@ python3.11 -m venv "${INSTALL_DIR}/.venv"
 "${INSTALL_DIR}/.venv/bin/pip" install --upgrade pip --quiet
 "${INSTALL_DIR}/.venv/bin/pip" install -r "${INSTALL_DIR}/requirements.txt" --quiet
 
-# Update systemd service to use venv python
-sed -i "s|ExecStart=/usr/bin/python3|ExecStart=${INSTALL_DIR}/.venv/bin/python3|" \
-    "${INSTALL_DIR}/systemd/news-podcast.service"
-sed -i "s|/usr/local/bin/uvicorn|${INSTALL_DIR}/.venv/bin/uvicorn|" \
-    "${INSTALL_DIR}/systemd/news-podcast-api.service"
 
 # ─── Ollama Installation ─────────────────────────────────────────────────────
 

@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=/opt/news-podcast
-ExecStart=/usr/local/bin/uvicorn src.api:app --host 0.0.0.0 --port 8000 --workers 1
+ExecStart=/opt/news-podcast/.venv/bin/uvicorn src.api:app --host 0.0.0.0 --port 8000 --workers 1
 Environment="PYTHONPATH=/opt/news-podcast"
 Restart=on-failure
 RestartSec=10

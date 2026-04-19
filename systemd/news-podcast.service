@@ -6,7 +6,7 @@ After=network.target ollama.service
 Type=oneshot
 User=ubuntu
 WorkingDirectory=/opt/news-podcast
-ExecStart=/usr/bin/python3 /opt/news-podcast/main.py
+ExecStart=/opt/news-podcast/.venv/bin/python3 /opt/news-podcast/main.py
 Environment="PYTHONPATH=/opt/news-podcast"
 # Secrets are loaded from a restricted file (chmod 600, owned by root)
 # Create /etc/news-podcast/secrets.env with:
