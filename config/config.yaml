@@ -1,0 +1,60 @@
+app:
+  language: "fr"  # Code langue ISO 639-1
+  timezone: "Europe/Paris"
+  retention_days: 30
+  log_level: "INFO"  # DEBUG pour plus de détails
+
+topics:
+  tech_enterprises:
+    name: "Actualité Tech"
+    queries: ["Apple", "Google", "Microsoft", "NVIDIA", "OpenAI"]
+    language: "fr"
+    region: null  # null = monde entier
+    max_articles: 15
+
+  geopolitique:
+    name: "Géopolitique Mondiale"
+    queries: ["géopolitique", "diplomatie", "conflit", "ONU"]
+    language: "fr"
+    region: null
+    max_articles: 15
+
+  sport:
+    name: "Actualité Sportive"
+    queries: ["football", "NBA", "JO", "coupe du monde"]
+    language: "fr"
+    region: null
+    max_articles: 10
+
+  all_topics:
+    name: "Briefing Complet"
+    queries: ["actualité", "politique", "économie", "sport", "technologie"]
+    language: "fr"
+    region: null
+    max_articles: 20
+
+models:
+  llm: "llama3.1:8b"
+  tts_voice: "fr_FR-siwis-medium"
+  ollama_url: "http://localhost:11434"
+  llm_temperature: 0.7
+  llm_num_predict: 1500
+  llm_top_p: 0.9
+
+tts:
+  piper_binary: "piper"  # Path to piper binary or just "piper" if in PATH
+  voices_dir: "piper-voices"
+  length_scale: 1.0
+  noise_scale: 0.667
+  voice_mapping:
+    fr: "fr_FR-siwis-medium"
+    en: "en_US-lessac-medium"
+
+delivery:
+  discord_webhook_url: "${DISCORD_WEBHOOK_URL}"  # Variable d'environnement
+  server_port: 8000
+  server_host: "0.0.0.0"
+
+newsapi:
+  api_key: "${NEWSAPI_KEY}"  # Variable d'environnement
+  base_url: "https://newsapi.org/v2"
